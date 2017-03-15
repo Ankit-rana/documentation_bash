@@ -9,8 +9,6 @@ String Methods
 ==============
 Case
 ----
-The are various ways:
-
 
 tr
 ::

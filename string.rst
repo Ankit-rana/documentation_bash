@@ -9,8 +9,7 @@ String Methods
 ==============
 Case
 ----
-
-tr
+TR
 ::
 
   $ echo "$a" | tr '[:upper:]' '[:lower:]'

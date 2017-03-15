@@ -10,35 +10,35 @@ String Methods
 Case
 ----
 
-*TR
+* TR
 ::
 
   $ echo "$a" | tr '[:upper:]' '[:lower:]'
   hi all
 
 
-*AWK
+* AWK
 ::
 
   $ echo "$a" | awk '{print tolower($0)}'
   hi all
 
 
-*Bash 4.0
+* Bash 4.0
 ::
 
    $ echo "${a,,}"
    hi all
 
 
-*Perl
+* Perl
 ::
 
    $ echo "$a" | perl -ne 'print lc'
    hi all
 
 
-*Bash
+* Bash
 ::
 
   lc(){

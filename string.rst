@@ -107,9 +107,38 @@ returns a list of substrings separated by the given delimiter(in most cases a sp
   IFS=', ' read -r -a array <<< "$string"
 join array into strings
 -----------------------
+opposite of splitting, joins the elements in the given list together using the string as the delimiter
+::
+  function join_by { local IFS="$1"; shift; echo "$*"; }
+  join_by , a "b c" d #a,b c,d
+  join_by / var local tmp #var/local/tmp
+  join_by , "${FOO[@]}" #a,b,c
 Slicing
 =======
+The "slice" syntax is a handy way to refer to sub-parts of sequences -- typically strings and lists
+::
+  
+  ${string:position:length}
 format
 ======
+To put together the strings and variable
+::
+
+   name="ankit"
+   echo "nice boy $name"
 Conditionals With String
 ========================
+On contrary to comparision with number where we use operator like -eq, strings are compared with '=='
+::
+
+  name="ankit"
+  if [[ $name == "dana" ]]
+  then
+   do something
+  elif [[ $name == "rana" ]]
+  then
+   do something
+  else
+   do something
+  fi
+    

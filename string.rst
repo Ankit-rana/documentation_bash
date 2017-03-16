@@ -98,6 +98,12 @@ Replace substring
 -----------------
 Split
 -----
+::
+  arr=($line)
+  or
+  read -a arr <<<$line
+  or
+  IFS=', ' read -r -a array <<< "$string"
 join array into strings
 -----------------------
 Slicing

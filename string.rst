@@ -119,9 +119,9 @@ longest substring match from right
   ${string%%substring}
 Replace substring
 -----------------
-replace first instance of a substring
+replace first occurance of a substring
 ::
-
+  #syntax : ${string/pattern/replacement}
   original_string='i love Suzi and Marry'
   string_to_replace_Suzi_with=Sara
   result_string="${original_string/Suzi/$string_to_replace_Suzi_with}"

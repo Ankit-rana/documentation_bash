@@ -94,8 +94,37 @@ String startswith or endswith
 -----------------------------
 Search
 ------
+if s1 in s2 ?
+::
+  
+  if [[ $s1 == *"$s2"* ]]
+  then
+    do something
+  fi
+shortest substring match
+::
+  
+  ${string#substring}
+longest substring match
+::
+  
+  ${string##substring}
+shortest substring match from right
+::
+  
+  ${string%substring}
+longest substring match from right
+::
+  
+  ${string%%substring}
 Replace substring
 -----------------
+replace first instance of a substring
+::
+
+  original_string='i love Suzi and Marry'
+  string_to_replace_Suzi_with=Sara
+  result_string="${original_string/Suzi/$string_to_replace_Suzi_with}"
 Split
 -----
 returns a list of substrings separated by the given delimiter(in most cases a space)

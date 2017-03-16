@@ -16,8 +16,8 @@ The length of the string can be founded as follows
   echo ${#string} #5
 String startswith or endswith
 -----------------------------
-
 ::
+
   [[ $a == "z*" ]]
   [[ $a == "*z" ]]
 Search

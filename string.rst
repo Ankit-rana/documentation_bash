@@ -4,9 +4,82 @@ Bash String
 
 Introduction
 ============
+Bash supports a surprising number of string manipulation operations. Unfortunately, these tools lack a unified focus. Some are a subset of parameter substitution, and others fall under the functionality of the UNIX expr command. This results in inconsistent command syntax and overlap of functionality, not to mention confusion.
 
 String Methods
 ==============
+Length of string
+----------------
+The length of the string can be founded as follows
+::
+  string="ankit" 
+  echo ${#string} #5
+String startswith or endswith
+-----------------------------
+
+::
+  [[ $a == "z*" ]]
+  [[ $a == "*z" ]]
+Search
+------
+if s1 in s2 ?
+::
+  
+  if [[ $s1 == *"$s2"* ]]
+  then
+    do something
+  fi
+shortest substring match
+::
+  
+  ${string#substring}
+longest substring match
+::
+  
+  ${string##substring}
+shortest substring match from right
+::
+  
+  ${string%substring}
+longest substring match from right
+::
+  
+  ${string%%substring}
+Replace substring
+-----------------
+replace first occurance of a substring
+::
+  #syntax : ${string/pattern/replacement}
+  original_string='i love Suzi and Marry'
+  string_to_replace_Suzi_with=Sara
+  result_string="${original_string/Suzi/$string_to_replace_Suzi_with}"
+replaces all the occurance of a substring
+::
+
+  ${string//pattern/replacement}
+Split
+-----
+returns a list of substrings separated by the given delimiter(in most cases a space)
+::
+  arr=($line)
+  or
+  read -a arr <<<$line
+  or
+  IFS=', ' read -r -a array <<< "$string"
+join array into strings
+-----------------------
+opposite of splitting, joins the elements in the given list together using the string as the delimiter
+::
+  function join_by { local IFS="$1"; shift; echo "$*"; }
+  join_by , a "b c" d #a,b c,d
+  join_by / var local tmp #var/local/tmp
+  join_by , "${FOO[@]}" #a,b,c
+Slicing
+=======
+The "slice" syntax is a handy way to refer to sub-parts of sequences -- typically strings and lists
+::
+  
+  ${string:position:length}
 Case
 ----
 
@@ -90,64 +163,6 @@ The echo command used the option -n to avoid adding a return character and causi
   #How to remove both leading and trailing spaces chain the seds
   FOO_NO_EXTERNAL_SPACE="$(echo -e "${FOO}" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
 
-String startswith or endswith
------------------------------
-Search
-------
-if s1 in s2 ?
-::
-  
-  if [[ $s1 == *"$s2"* ]]
-  then
-    do something
-  fi
-shortest substring match
-::
-  
-  ${string#substring}
-longest substring match
-::
-  
-  ${string##substring}
-shortest substring match from right
-::
-  
-  ${string%substring}
-longest substring match from right
-::
-  
-  ${string%%substring}
-Replace substring
------------------
-replace first occurance of a substring
-::
-  #syntax : ${string/pattern/replacement}
-  original_string='i love Suzi and Marry'
-  string_to_replace_Suzi_with=Sara
-  result_string="${original_string/Suzi/$string_to_replace_Suzi_with}"
-Split
------
-returns a list of substrings separated by the given delimiter(in most cases a space)
-::
-  arr=($line)
-  or
-  read -a arr <<<$line
-  or
-  IFS=', ' read -r -a array <<< "$string"
-join array into strings
------------------------
-opposite of splitting, joins the elements in the given list together using the string as the delimiter
-::
-  function join_by { local IFS="$1"; shift; echo "$*"; }
-  join_by , a "b c" d #a,b c,d
-  join_by / var local tmp #var/local/tmp
-  join_by , "${FOO[@]}" #a,b,c
-Slicing
-=======
-The "slice" syntax is a handy way to refer to sub-parts of sequences -- typically strings and lists
-::
-  
-  ${string:position:length}
 format
 ======
 To put together the strings and variable
@@ -171,3 +186,5 @@ On contrary to comparision with number where we use operator like -eq, strings a
    do something
   fi
     
+
+appendix : `BashFAQ<http://mywiki.wooledge.org/BashFAQ/100>`

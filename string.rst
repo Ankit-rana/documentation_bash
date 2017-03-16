@@ -98,6 +98,7 @@ Replace substring
 -----------------
 Split
 -----
+returns a list of substrings separated by the given delimiter(in most cases a space)
 ::
   arr=($line)
   or

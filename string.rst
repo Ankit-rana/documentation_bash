@@ -59,13 +59,13 @@ Case
 Strip
 -----
 
-*SED
+* SED
 removes all possible spaces at the end of the line
 ::
 
   sed 's/ *$//' file
   
-*ECHO AND WC
+* ECHO AND WC
 The echo command used the option -n to avoid adding a return character and causing wc -m count an additional character.
 ::
 
